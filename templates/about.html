@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us - Tourist Travel Agency{% endblock %}
+
+{% block hero_section %}
+<div class="container-fluid bg-primary py-5 mb-5 hero-header">
+    <div class="container py-5">
+        <div class="row justify-content-center py-5">
+            <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
+                <h1 class="display-3 text-white animated slideInDown">About Us</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">About</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- About Start -->
+<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+    <h6 class="section-title bg-white text-center text-primary px-3">About</h6>
+    <h1 class="mb-5">About Us</h1><br>
+</div>
+
+<div class="bodyy">
+    <div class="acontainer">
+        <div class="about-section">
+            <!-- Section 1 -->
+            <div class="asection active">
+                <div class="aimage-container">
+                    <img src="{% static 'img/logoo.png' %}" alt="Northern Pakistan">
+                </div>
+                <div class="atext-container">
+                    <div class="icon"><i class="fas fa-mountain"></i></div>
+                    <h2>Welcome to Northern Pakistan</h2>
+                    <p>Northern Pakistan is home to the world's highest mountains, lush valleys, and vibrant culture.</p>
+                </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="asection">
+                <div class="aimage-container">
+                    <img src="{% static 'img/travell.jpg' %}" alt="Safe Travel">
+                </div>
+                <div class="atext-container">
+                    <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                    <h2>Safe to Travel</h2>
+                    <p>Travel with peace of mind — this land is welcoming and secure for explorers from all over the world.</p>
+                </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="asection">
+                <div class="aimage-container">
+                    <img src="{% static 'img/landscape.jpeg' %}" alt="Landscape">
+                </div>
+                <div class="atext-container">
+                    <div class="icon"><i class="fas fa-tree"></i></div>
+                    <h2>Unbelievable Landscape</h2>
+                    <p>Majestic peaks, crystal-clear lakes, and lush valleys — a paradise for nature lovers.</p>
+                </div>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="asection">
+                <div class="aimage-container">
+                    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=900&q=80" alt="Hospitality">
+                </div>
+                <div class="atext-container">
+                    <div class="icon"><i class="fas fa-hands-helping"></i></div>
+                    <h2>Hospitality</h2>
+                    <p>Experience unmatched warmth and generosity — here, every guest is treated like family.</p>
+                </div>
+            </div>
+
+            <!-- Section 5 -->
+            <div class="asection">
+                <div class="aimage-container">
+                    <img src="{% static 'img/food.jpg' %}" alt="Food">
+                </div>
+                <div class="atext-container">
+                    <div class="aicon"><i class="fas fa-utensils"></i></div>
+                    <h2>Food</h2>
+                    <p>From aromatic biryanis to sizzling kebabs, Pakistani cuisine is a feast of flavors.</p>
+                </div>
+            </div>
+        </div>
+        <div class="indicators">
+            <div class="indicator active" data-index="0"></div>
+            <div class="indicator" data-index="1"></div>
+            <div class="indicator" data-index="2"></div>
+            <div class="indicator" data-index="3"></div>
+            <div class="indicator" data-index="4"></div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+
+<!-- Team Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title bg-white text-center text-primary px-3">Travel Guide</h6>
+            <h1 class="mb-5">Meet Influencer Guide</h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="team-item">
+                    <div class="overflow-hidden">
+                        <img class="img-fluid" src="{% static 'img/sana.jpeg' %}" alt="Sana Khan">
+                    </div>
+                    <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
+                        <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-square mx-1" href=""><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="text-center p-4">
+                        <h5 class="mb-0">Sana Khan</h5>
+                        <small>@sanakhaan21</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="team-item">
+                    <div class="overflow-hidden">
+                        <img class="img-fluid" src="{% static 'img/aresha.jpeg' %}" alt="Arisha Khan">
+                    </div>
+                    <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
+                        <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-square mx-1" href=""><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="text-center p-4">
+                        <h5 class="mb-0">Arisha Khan</h5>
+                        <small>@littlekhanswanderlust</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="team-item">
+                    <div class="overflow-hidden">
+                        <img class="img-fluid" src="{% static 'img/hsn.jpeg' %}" alt="Hassan Talal">
+                    </div>
+                    <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
+                        <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-square mx-1" href=""><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="text-center p-4">
+                        <h5 class="mb-0">Hassan Talal</h5>
+                        <small>@hsn_tiwana</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="team-item">
+                    <div class="overflow-hidden">
+                        <img class="img-fluid" src="{% static 'img/kabir.jpeg' %}" alt="Kabir Khan Afridi">
+                    </div>
+                    <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
+                        <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-square mx-1" href=""><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="text-center p-4">
+                        <h5 class="mb-0">Kabir Khan Afridi</h5>
+                        <small>@kabirafridiofficial</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Team End -->
+{% endblock %}
+
+

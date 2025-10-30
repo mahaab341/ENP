@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Packages - Tourist Travel Agency{% endblock %}
+
+{% block hero_section %}
+<div class="container-fluid bg-primary py-5 mb-5 hero-header">
+    <div class="container py-5">
+        <div class="row justify-content-center py-5">
+            <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
+                <h1 class="display-3 text-white animated slideInDown">Packages</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Packages</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- Package Start -->
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+  <div class="container">
+    <div class="text-center">
+      <h6 class="section-title bg-white text-center text-primary px-3">Packages</h6>
+      <h1 class="mb-5">Awesome Packages</h1>
+    </div>
+
+    <!-- Carousel Start -->
+    <div class="owl-carousel testimonial-carousel position-relative">
+
+      <!-- Package 1 -->
+      <div class="package-item bg-white text-center border p-4">
+        <img class="mx-auto mb-3 rounded-3" src="{% static 'img/package-1.jpg' %}" style="width: 100%; height: 250px; object-fit: cover;">
+        
+        <div class="d-flex border-bottom pb-2 mb-2">
+          <small class="flex-fill text-center border-end"><i class="fa fa-map-marker-alt text-primary me-2"></i>Murree</small>
+          <small class="flex-fill text-center border-end"><i class="fa fa-calendar-alt text-primary me-2"></i>3 Days</small>
+          <small class="flex-fill text-center"><i class="fa fa-user text-primary me-2"></i>2 Person</small>
+        </div>
+
+        <h3 class="mb-0">Rs.30,000</h3>
+        <div class="mb-3">
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+        </div>
+        <p>"Murree the crown of Pakistan's hills, where clouds kiss the mountains."</p>
+      </div>
+
+      <!-- Package 2 -->
+      <div class="package-item bg-white text-center border p-4">
+        <img class="mx-auto mb-3 rounded-3" src="{% static 'img/sawat.jpeg' %}" style="width: 100%; height: 250px; object-fit: cover;">
+        
+        <div class="d-flex border-bottom pb-2 mb-2">
+          <small class="flex-fill text-center border-end"><i class="fa fa-map-marker-alt text-primary me-2"></i>Swat</small>
+          <small class="flex-fill text-center border-end"><i class="fa fa-calendar-alt text-primary me-2"></i>3 Days</small>
+          <small class="flex-fill text-center"><i class="fa fa-user text-primary me-2"></i>2 Person</small>
+        </div>
+
+        <h3 class="mb-0">Rs.25,000</h3>
+        <div class="mb-3">
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+        </div>
+        <p>"Swat – the emerald valley where rivers sing and mountains whisper."</p>
+      </div>
+
+      <!-- Package 3 -->
+      <div class="package-item bg-white text-center border p-4">
+        <img class="mx-auto mb-3 rounded-3" src="{% static 'img/naran.jpeg' %}" style="width: 100%; height: 250px; object-fit: cover;">
+        
+        <div class="d-flex border-bottom pb-2 mb-2">
+          <small class="flex-fill text-center border-end"><i class="fa fa-map-marker-alt text-primary me-2"></i>Naran Kaghan</small>
+          <small class="flex-fill text-center border-end"><i class="fa fa-calendar-alt text-primary me-2"></i>3 Days</small>
+          <small class="flex-fill text-center"><i class="fa fa-user text-primary me-2"></i>2 Person</small>
+        </div>
+
+        <h3 class="mb-0">Rs.30,000</h3>
+        <div class="mb-3">
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+        </div>
+        <p>"Naran Kaghan – a paradise of sparkling lakes, snow-capped peaks."</p>
+      </div>
+
+      <!-- Package 4 -->
+      <div class="package-item bg-white text-center border p-4">
+        <img class="mx-auto mb-3 rounded-3" src="{% static 'img/neelum.jpeg' %}" style="width: 100%; height: 250px; object-fit: cover;">
+        
+        <div class="d-flex border-bottom pb-2 mb-2">
+          <small class="flex-fill text-center border-end"><i class="fa fa-map-marker-alt text-primary me-2"></i>Neelum Valley</small>
+          <small class="flex-fill text-center border-end"><i class="fa fa-calendar-alt text-primary me-2"></i>3 Days</small>
+          <small class="flex-fill text-center"><i class="fa fa-user text-primary me-2"></i>2 Person</small>
+        </div>
+
+        <h3 class="mb-0">Rs.30,000</h3>
+        <div class="mb-3">
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+        </div>
+        <p>"Neelum Valley – where mountains guard timeless beauty."</p>
+      </div>
+
+      <!-- Package 5 -->
+      <div class="package-item bg-white text-center border p-4">
+        <img class="mx-auto mb-3 rounded-3" src="{% static 'img/hunza.jpeg' %}" style="width: 100%; height: 250px; object-fit: cover;">
+        
+        <div class="d-flex border-bottom pb-2 mb-2">
+          <small class="flex-fill text-center border-end"><i class="fa fa-map-marker-alt text-primary me-2"></i>Hunza</small>
+          <small class="flex-fill text-center border-end"><i class="fa fa-calendar-alt text-primary me-2"></i>3 Days</small>
+          <small class="flex-fill text-center"><i class="fa fa-user text-primary me-2"></i>2 Person</small>
+        </div>
+
+        <h3 class="mb-0">Rs.33,000</h3>
+        <div class="mb-3">
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+        </div>
+        <p>"Hunza – the land of timeless glaciers where every sunrise feels like pure magic."</p>
+      </div>
+
+      <!-- Package 6 -->
+      <div class="package-item bg-white text-center border p-4">
+        <img class="mx-auto mb-3 rounded-3" src="{% static 'img/fairy.jpeg' %}" style="width: 100%; height: 250px; object-fit: cover;">
+        
+        <div class="d-flex border-bottom pb-2 mb-2">
+          <small class="flex-fill text-center border-end"><i class="fa fa-map-marker-alt text-primary me-2"></i>Fairy Meadows</small>
+          <small class="flex-fill text-center border-end"><i class="fa fa-calendar-alt text-primary me-2"></i>3 Days</small>
+          <small class="flex-fill text-center"><i class="fa fa-user text-primary me-2"></i>2 Person</small>
+        </div>
+
+        <h3 class="mb-0">Rs.40,000</h3>
+        <div class="mb-3">
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+        </div>
+        <p>"Fairy Meadows – the doorway to Nanga Parbat, where starlit nights meet heaven on earth."</p>
+      </div>
+
+      <!-- Package 7 -->
+      <div class="package-item bg-white text-center border p-4">
+        <img class="mx-auto mb-3 rounded-3" src="{% static 'img/skardu.jpeg' %}" style="width: 100%; height: 250px; object-fit: cover;">
+        
+        <div class="d-flex border-bottom pb-2 mb-2">
+          <small class="flex-fill text-center border-end"><i class="fa fa-map-marker-alt text-primary me-2"></i>Skardu</small>
+          <small class="flex-fill text-center border-end"><i class="fa fa-calendar-alt text-primary me-2"></i>3 Days</small>
+          <small class="flex-fill text-center"><i class="fa fa-user text-primary me-2"></i>2 Person</small>
+        </div>
+
+        <h3 class="mb-0">Rs.35,000</h3>
+        <div class="mb-3">
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+        </div>
+        <p>"Skardu – where crystal lakes and towering peaks create nature's grand masterpiece."</p>
+      </div>
+
+      <!-- Package 8 -->
+      <div class="package-item bg-white text-center border p-4">
+        <img class="mx-auto mb-3 rounded-3" src="{% static 'img/kashmir.jpeg' %}" style="width: 100%; height: 250px; object-fit: cover;">
+        
+        <div class="d-flex border-bottom pb-2 mb-2">
+          <small class="flex-fill text-center border-end"><i class="fa fa-map-marker-alt text-primary me-2"></i>Kashmir</small>
+          <small class="flex-fill text-center border-end"><i class="fa fa-calendar-alt text-primary me-2"></i>3 Days</small>
+          <small class="flex-fill text-center"><i class="fa fa-user text-primary me-2"></i>2 Person</small>
+        </div>
+
+        <h3 class="mb-0">Rs.38,000</h3>
+        <div class="mb-3">
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+          <small class="fa fa-star text-primary"></small>
+        </div>
+        <p>"Kashmir – a canvas of seasons, where every turn paints a new story of beauty and wonder."</p>
+      </div>
+    </div>
+    <!-- Carousel End -->
+  </div>
+</div>
+<!-- Package End -->
+{% endblock %}
+

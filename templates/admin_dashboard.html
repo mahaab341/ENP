@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body style="font-family: Arial; text-align: center; margin-top: 50px;">
+  <h2>Total Orders: {{ total_orders }}</h2>
+
+  <canvas id="ordersChart" width="400" height="200"></canvas>
+
+  <script>
+    // Safe JSON encoding — yahan error nahi aayega
+    const pending = JSON.parse('{{ pending|default:0|json_script:"pending_data" }}');
+    const confirmed = JSON.parse('{{ confirmed|default:0|json_script:"confirmed_data" }}');
+  </script>
+
+  <script id="pending_data" type="application/json">{{ pending|default:0 }}</script>
+  <script id="confirmed_data" type="application/json">{{ confirmed|default:0 }}</script>
+
+  <script>
+    const ctx = document.getElementById('ordersChart');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Pending', 'Confirmed'],
+        datasets: [{
+          label: 'Orders',
+          data: [Number(document.getElementById('pending_data').textContent),
+                 Number(document.getElementById('confirmed_data').textContent)],
+          backgroundColor: ['#36A2EB', '#4BC0C0'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

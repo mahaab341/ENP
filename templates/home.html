@@ -1,0 +1,304 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home - Tourist Travel Agency{% endblock %}
+
+{% block hero_section %}
+<div class="container-fluid bg-primary py-5 mb-5 hero-header">
+    <div class="container py-5">
+        <div class="row justify-content-center py-5">
+            <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
+                <h1 class="display-3 text-white mb-3 animated slideInDown" style="font-family: 'Poppins', sans-serif; font-weight: 700;">Turn Your Travel Dreams into Reality</h1>
+                <p class="fs-4 text-white mb-4 animated slideInDown" style="font-family: 'Poppins', sans-serif; font-weight: 700;">Your travel partner for safe, affordable, and premium northern trips</p>
+                <div class="position-relative w-75 mx-auto animated slideInDown">
+                    <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Eg: Muree">
+                    <button type="button" class="btn btn-primary rounded-pill py-2 px-4 position-absolute top-0 end-0 me-2" style="margin-top: 7px;">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- About Start -->
+<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+    <h6 class="section-title bg-white text-center text-primary px-3">About</h6>
+    <h1 class="mb-5">About Us</h1><br>
+</div>
+<div class="bodyy">
+    <div class="acontainer">
+        <div class="about-section">
+            <!-- Section 1 -->
+            <div class="asection active">
+                <div class="aimage-container">
+                    <img src="{% static 'img/logoo.png' %}" alt="">
+                </div>
+                <div class="atext-container">
+                    <div class="icon"><i class="fas fa-mountain"></i></div>
+                    <h2>Welcome to Northern Pakistan</h2>
+                    <p>Northern Pakistan is home to the world's highest mountains, lush valleys, and vibrant culture.</p>
+                </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="asection">
+                <div class="aimage-container">
+                    <img src="{% static 'img/travell.jpg' %}" alt="">
+                </div>
+                <div class="atext-container">
+                    <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                    <h2>Safe to Travel</h2>
+                    <p>Travel with peace of mind — this land is welcoming and secure for explorers from all over the world.</p>
+                </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="asection">
+                <div class="aimage-container">
+                    <img src="{% static 'img/landscape.jpeg' %}" alt="">
+                </div>
+                <div class="atext-container">
+                    <div class="icon"><i class="fas fa-tree"></i></div>
+                    <h2>Unbelievable Landscape</h2>
+                    <p>Majestic peaks, crystal-clear lakes, and lush valleys — a paradise for nature lovers.</p>
+                </div>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="asection">
+                <div class="aimage-container">
+                    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=900&q=80" alt="">
+                </div>
+                <div class="atext-container">
+                    <div class="icon"><i class="fas fa-hands-helping"></i></div>
+                    <h2>Hospitality</h2>
+                    <p>Experience unmatched warmth and generosity — here, every guest is treated like family.</p>
+                </div>
+            </div>
+
+            <!-- Section 5 -->
+            <div class="asection">
+                <div class="aimage-container">
+                    <img src="{% static 'img/food.jpg' %}" alt="">
+                </div>
+                <div class="atext-container">
+                    <div class="aicon"><i class="fas fa-utensils"></i></div>
+                    <h2>Food</h2>
+                    <p>From aromatic biryanis to sizzling kebabs, Pakistani cuisine is a feast of flavors.</p>
+                </div>
+            </div>
+        </div>
+        <div class="indicators">
+            <div class="indicator active" data-index="0"></div>
+            <div class="indicator" data-index="1"></div>
+            <div class="indicator" data-index="2"></div>
+            <div class="indicator" data-index="3"></div>
+            <div class="indicator" data-index="4"></div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+
+<!-- Service Start -->
+<div class="scontainer-xxl py-5">
+    <div class="bod">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title bg-white text-center text-primary px-3">Services</h6>
+            <h1 class="mb-5">Our Services</h1>
+        </div>
+        <div class="scontainer">
+            <!-- North -->
+            <div class="scard">
+                <div class="scard-icon">
+                    <i class="fas fa-mountain"></i>
+                </div>
+                <h3>North</h3>
+                <p>Explore majestic mountains, lush valleys, and northern adventures.</p>
+            </div>
+
+            <!-- Accommodations -->
+            <div class="scard">
+                <div class="smulti-icons">
+                    <div class="smulti-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="smulti-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="smulti-icon">
+                        <i class="fas fa-campground"></i>
+                    </div>
+                </div>
+                <h3>Accommodations</h3>
+                <p>Stay in cozy homes, rent a car, or enjoy camping under the stars.</p>
+            </div>
+
+            <!-- Travel Guide -->
+            <div class="scard">
+                <div class="scard-icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <h3>Travel Guide</h3>
+                <p>Plan smarter with expert tips, maps, and local insights.</p>
+            </div>
+
+            <!-- Local Events -->
+            <div class="scard">
+                <div class="scard-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3>Local Events</h3>
+                <p>Never miss a festival or cultural event during your trip.</p>
+            </div>
+
+            <!-- Food -->
+            <div class="scard">
+                <div class="scard-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h3>Food</h3>
+                <p>Enjoy local flavors, traditional dishes, and hidden food spots.</p>
+            </div>
+
+            <!-- AI Planner -->
+            <div class="scard">
+                <div class="scard-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>AI Planner</h3>
+                <p>Let AI build your personalized itinerary in seconds.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Service End -->
+
+<!-- destination start -->
+<div class="container-xxl py-5 destination">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title bg-white text-center text-primary px-3">Destination</h6>
+            <h1 class="mb-5">Popular Destination</h1>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-12 wow zoomIn" data-wow-delay="0.1s" style="min-height: 100px;">
+                <div class="position-relative d-block h-100 overflow-hidden">
+                    <video class="w-100 h-100" autoplay muted loop controls style="object-fit: cover;">
+                        <source src="{% static 'video/vid.mp4' %}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- destination end -->
+
+<!-- Packages Section Start -->
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="text-center">
+            <h6 class="section-title bg-white text-center text-primary px-3">Packages</h6>
+            <h1 class="mb-5">Awesome Packages</h1>
+        </div>
+
+        <!-- Carousel Start -->
+        <div class="owl-carousel testimonial-carousel position-relative">
+            <!-- Package 1 -->
+            <div class="package-item bg-white text-center border p-4">
+                <img class="mx-auto mb-3 rounded-3" src="{% static 'img/package-1.jpg' %}" style="width: 100%; height: 250px; object-fit: cover;">
+                <div class="d-flex border-bottom pb-2 mb-2">
+                    <small class="flex-fill text-center border-end"><i class="fa fa-map-marker-alt text-primary me-2"></i>Murree</small>
+                    <small class="flex-fill text-center border-end"><i class="fa fa-calendar-alt text-primary me-2"></i>3 Days</small>
+                    <small class="flex-fill text-center"><i class="fa fa-user text-primary me-2"></i>2 Person</small>
+                </div>
+                <h3 class="mb-0">Rs.30,000</h3>
+                <div class="mb-3">
+                    <small class="fa fa-star text-primary"></small>
+                    <small class="fa fa-star text-primary"></small>
+                    <small class="fa fa-star text-primary"></small>
+                    <small class="fa fa-star text-primary"></small>
+                    <small class="fa fa-star text-primary"></small>
+                </div>
+                <p>"Murree the crown of Pakistan's hills, where clouds kiss the mountains."</p>
+            </div>
+
+            <!-- Package 2 -->
+            <div class="package-item bg-white text-center border p-4">
+                <img class="mx-auto mb-3 rounded-3" src="{% static 'img/sawat.jpeg' %}" style="width: 100%; height: 250px; object-fit: cover;">
+                <div class="d-flex border-bottom pb-2 mb-2">
+                    <small class="flex-fill text-center border-end"><i class="fa fa-map-marker-alt text-primary me-2"></i>Swat</small>
+                    <small class="flex-fill text-center border-end"><i class="fa fa-calendar-alt text-primary me-2"></i>3 Days</small>
+                    <small class="flex-fill text-center"><i class="fa fa-user text-primary me-2"></i>2 Person</small>
+                </div>
+                <h3 class="mb-0">Rs.25,000</h3>
+                <div class="mb-3">
+                    <small class="fa fa-star text-primary"></small>
+                    <small class="fa fa-star text-primary"></small>
+                    <small class="fa fa-star text-primary"></small>
+                    <small class="fa fa-star text-primary"></small>
+                    <small class="fa fa-star text-primary"></small>
+                </div>
+                <p>"Swat – the emerald valley where rivers sing and mountains whisper."</p>
+            </div>
+
+            <!-- Add other packages as needed -->
+        </div>
+        <!-- Carousel End -->
+    </div>
+</div>
+<!-- Package End -->
+
+<!-- Team Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title bg-white text-center text-primary px-3">Travel Guide</h6>
+            <h1 class="mb-5">Meet Influencer Guide</h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="team-item">
+                    <div class="overflow-hidden">
+                        <img class="img-fluid" src="{% static 'img/sana.jpeg' %}" alt="">
+                    </div>
+                    <div class="position-relative d-flex justify-content-center" style="margin-top: -19px;">
+                        <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-square mx-1" href=""><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="text-center p-4">
+                        <h5 class="mb-0">Sana Khan</h5>
+                        <small>@sanakhaan21</small>
+                    </div>
+                </div>
+            </div>
+            <!-- Add other team members as needed -->
+        </div>
+    </div>
+</div>
+<!-- Team End -->
+
+<!-- Testimonial Start -->
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="text-center">
+            <h6 class="section-title bg-white text-center text-primary px-3">Testimonial</h6>
+            <h1 class="mb-5">Our Clients Say!!!</h1>
+        </div>
+        <div class="owl-carousel testimonial-carousel position-relative">
+            <div class="testimonial-item bg-white text-center border p-4">
+                <img class="bg-white rounded-circle shadow p-1 mx-auto mb-3" src="{% static 'img/female.jpeg' %}" style="width: 80px; height: 80px;">
+                <h5 class="mb-0">Maha</h5>
+                <p>Gujranwala,Pakistan</p>
+                <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+            </div>
+            <!-- Add other testimonials as needed -->
+        </div>
+    </div>
+</div>
+<!-- Testimonial End -->
+{% endblock %}
