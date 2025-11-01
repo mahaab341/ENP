@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking | ENP</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0; 
+            padding: 0;
+            background-color: #f6fbf7;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #86B817;
+            color: white;
+            display: flex; 
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .search-container {
+            position: relative;
+            flex: 1;
+            min-width: 150px;
+            max-width: 250px;
+        }
+
+        header input {
+            padding: 8px 35px 8px 10px; 
+            width: 100%;
+            border: none; 
+            border-radius: 5px;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #86B817;
+            cursor: pointer;
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+        }
+
+        .filters {
+            width: 100%;
+            padding: 15px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            order: 2;
+        }
+
+        .filters h3 {
+            margin-top: 0;
+            color: #86B817;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .star-filter {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            background: white;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .star-filter.active {
+            background: #86B817; 
+            color: white;
+            border-color: #86B817;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .star-filter:hover { 
+            background: #eafaf1; 
+            border-color: #86B817;
+        }
+
+        .star-filter.active:hover {
+            background: #86B817;
+        }
+
+        .hotels-container {
+            flex: 1;
+            padding: 15px;
+            order: 1;
+        }
+
+        .hotels {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .hotel-card {
+            background: white;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hotel-card:hover { 
+            transform: translateY(-5px); 
+        }
+        
+        .hotel-card img { 
+            width: 100%; 
+            height: 200px; 
+            object-fit: cover; 
+        }
+
+        .hotel-info { 
+            padding: 15px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+        }
+        
+        .hotel-info h2 { 
+            margin: 0 0 10px; 
+            color: #86B817; 
+            font-size: 1.3rem; 
+        }
+        
+        .hotel-info p { 
+            margin: 6px 0; 
+            font-size: 14px; 
+        }
+
+        .book-btn {
+            background: #86B817; 
+            color: white;
+            border: none; 
+            padding: 12px;
+            border-radius: 5px; 
+            cursor: pointer;
+            width: 100%; 
+            transition: 0.3s;
+            font-weight: bold;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            margin-top: 10px;
+        }
+
+        .book-btn:hover { 
+            background: #7aa714; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; 
+            left: 0;
+            width: 100%; 
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center; 
+            align-items: center;
+            z-index: 1000;
+            padding: 15px;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 450px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute; 
+            top: 10px; 
+            right: 15px;
+            font-weight: bold; 
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .modal-content img {
+            width: 100%; 
+            height: 200px; 
+            object-fit: cover;
+            border-radius: 5px; 
+            margin-bottom: 10px;
+        }
+
+        .modal-content h2 { 
+            text-align: center; 
+            color: #86B817; 
+            font-size: 1.4rem;
+            margin: 10px 0;
+        }
+        
+        .modal-section { 
+            margin-bottom: 15px; 
+        }
+        
+        .modal-section h4 { 
+            margin-bottom: 8px; 
+            color: #86B817; 
+            font-size: 1.1rem;
+        }
+
+        .amenities span {
+            display: inline-block; 
+            margin: 3px;
+            padding: 4px 8px; 
+            background: #eafaf1;
+            border-radius: 5px; 
+            font-size: 12px; 
+            color: #86B817;
+        }
+
+        .rooms p { 
+            margin: 3px 0; 
+            font-size: 13px; 
+        }
+        
+        .rating { 
+            color: #f39c12; 
+        }
+        
+        /* Room details styling */
+        .room-details {
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .room-details h5 {
+            margin: 0 0 5px 0;
+            color: #86B817;
+            font-size: 1rem;
+        }
+        
+        /* Date Inputs */
+        .date-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .date-input {
+            width: 100%;
+        }
+        
+        .date-input label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #86B817;
+            font-size: 0.9rem;
+        }
+        
+        .date-input input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .date-input input:focus {
+            border-color: #86B817;
+            outline: none;
+        }
+        
+        /* Modal Book Now button */
+        .modal-book-btn {
+            background: #86B817; 
+            color: white;
+            border: none; 
+            padding: 12px 20px;
+            border-radius: 5px; 
+            cursor: pointer;
+            width: 100%; 
+            transition: 0.3s;
+            font-weight: bold;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            margin-top: 15px;
+        }
+        
+        .modal-book-btn:hover { 
+            background: #7aa714; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Booking Form */
+        .booking-form {
+            display: none;
+            position: fixed;
+            top: 0; 
+            left: 0;
+            width: 100%; 
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center; 
+            align-items: center;
+            z-index: 1000;
+            padding: 15px;
+        }
+
+        .booking-form-content {
+            background: white;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 25px;
+            position: relative;
+        }
+
+        .booking-form-content h2 {
+            text-align: center;
+            color: #86B817;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #86B817;
+            outline: none;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .booking-summary {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .booking-summary h4 {
+            margin-top: 0;
+            color: #86B817;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .form-buttons button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .submit-btn {
+            background: #86B817;
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background: #7aa714;
+        }
+
+        .cancel-btn {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .cancel-btn:hover {
+            background: #e0e0e0;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            position: fixed;
+            top: 0; 
+            left: 0;
+            width: 100%; 
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center; 
+            align-items: center;
+            z-index: 1000;
+            padding: 15px;
+        }
+
+        .success-content {
+            background: white;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .success-icon {
+            font-size: 50px;
+            color: #86B817;
+            margin-bottom: 15px;
+        }
+
+        .success-content h2 {
+            color: #86B817;
+            margin-top: 0;
+        }
+
+        /* No Results Message */
+        .no-results {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+
+        .no-results h3 {
+            color: #86B817;
+            margin-bottom: 10px;
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 768px) {
+            .main-container {
+                flex-direction: row;
+            }
+            
+            .filters {
+                width: 200px;
+                order: 1;
+                padding: 20px;
+            }
+            
+            .filter-buttons {
+                flex-direction: column;
+            }
+            
+            .star-filter {
+                text-align: left;
+            }
+            
+            .hotels-container {
+                order: 2;
+                padding: 20px;
+            }
+            
+            .hotel-card {
+                flex-direction: row;
+            }
+            
+            .hotel-card img { 
+                width: 35%; 
+                height: 220px; 
+            }
+            
+            .hotel-info { 
+                width: 65%;
+                padding: 25px; 
+            }
+            
+            .date-inputs {
+                flex-direction: row;
+                gap: 15px;
+            }
+            
+            header {
+                padding: 15px 30px;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hotels {
+                max-width: 1200px;
+            }
+            
+            .modal-content {
+                width: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>ENP Hotels - Northern Areas</h1>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search by city...">
+        <div class="search-icon">🔍</div>
+    </div>
+</header>
+
+<div class="main-container">
+    <section class="filters">
+        <h3>Filter by Rating</h3>
+        <div class="filter-buttons">
+            <button class="star-filter active" data-star="all">All Hotels</button>
+            <button class="star-filter" data-star="5">5 Star Hotels</button>
+            <button class="star-filter" data-star="4">4 Star Hotels</button>
+            <button class="star-filter" data-star="3">3 Star Hotels</button>
+        </div>
+    </section>
+
+    <section class="hotels-container">
+        <div class="hotels">
+            <!-- 5 Star Hotels (3 Hotels) -->
+            <div class="hotel-card" 
+                 data-name="Hunza Serena Hotel"
+                 data-star="5"
+                 data-location="Hunza"
+                 data-price="300"
+                 data-rating="9.4 (Excellent)"
+                 data-checkin="2:00 PM"
+                 data-checkout="12:00 PM"
+                 data-map="https://maps.google.com"
+                 data-description="Luxury hotel in the heart of Hunza Valley with breathtaking views of Rakaposhi and Ultar Sar peaks. Experience traditional hospitality with modern amenities."
+                 data-facilities="Mountain View,Free WiFi,Heated Pool,Spa,Restaurant,Cultural Shows,Guided Tours"
+                 data-rooms='[
+                   {"name": "Deluxe Mountain View Room", "price": 300, "beds": "1 King Bed", "size": "40 m²", "view": "Mountain View", "amenities": "Free WiFi, Heating, TV, Minibar, Balcony"},
+                   {"name": "Royal Suite", "price": 550, "beds": "1 King Bed + Living Area", "size": "70 m²", "view": "Panoramic Mountain View", "amenities": "Free WiFi, Heating, TV, Minibar, Fireplace, Private Balcony"},
+                   {"name": "Family Suite", "price": 450, "beds": "2 Double Beds", "size": "60 m²", "view": "Valley View", "amenities": "Free WiFi, Heating, TV, Minibar, Extra Space"}
+                 ]'
+                 data-img="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Hunza Serena Hotel">
+                <div class="hotel-info">
+                    <h2>Hunza Serena Hotel</h2>
+                    <p>⭐⭐⭐⭐⭐ | 9.4 (Excellent)</p>
+                    <p>📍 Hunza Valley</p>
+                    <p>💰 From $300/night</p>
+                    <button class="book-btn">View Details</button>
+                </div>
+            </div>
+
+            <div class="hotel-card" 
+                 data-name="Shangrila Resort"
+                 data-star="5"
+                 data-location="Skardu"
+                 data-price="280"
+                 data-rating="9.2 (Excellent)"
+                 data-checkin="3:00 PM"
+                 data-checkout="12:00 PM"
+                 data-map="https://maps.google.com"
+                 data-description="Premium resort on the banks of Shangrila Lake, offering luxury amidst the majestic Karakoram mountains. Famous for its beautiful Lower Kachura Lake location."
+                 data-facilities="Lake Front,Infinity Pool,Fine Dining,Boat Rides,Campfire,Trekking Guides"
+                 data-rooms='[
+                   {"name": "Lake View Room", "price": 280, "beds": "1 King Bed", "size": "45 m²", "view": "Lake View", "amenities": "Free WiFi, Heating, TV, Minibar, Private Balcony"},
+                   {"name": "Garden Cottage", "price": 350, "beds": "1 King Bed + Living Area", "size": "55 m²", "view": "Garden & Lake View", "amenities": "Free WiFi, Heating, TV, Minibar, Private Garden"},
+                   {"name": "Royal Villa", "price": 600, "beds": "1 King Bed + 2 Single Beds", "size": "85 m²", "view": "Panoramic Lake View", "amenities": "Free WiFi, Heating, Multiple TVs, Kitchenette, Private Deck"}
+                 ]'
+                 data-img="https://shangrilaresorts.com.pk/wp-content/uploads/2020/11/PHOTO-2020-08-29-14-56-32-1024x768.jpg">
+                <img src="https://shangrilaresorts.com.pk/wp-content/uploads/2020/11/PHOTO-2020-08-29-14-56-32-1024x768.jpg" alt="Shangrila Resort">
+                <div class="hotel-info">
+                    <h2>Shangrila Resort</h2>
+                    <p>⭐⭐⭐⭐⭐ | 9.2 (Excellent)</p>
+                    <p>📍 Skardu</p>
+                    <p>💰 From $280/night</p>
+                    <button class="book-btn">View Details</button>
+                </div>
+            </div>
+
+            <div class="hotel-card" 
+                 data-name="Swat Serena Hotel"
+                 data-star="5"
+                 data-location="Swat"
+                 data-price="220"
+                 data-rating="9.1 (Excellent)"
+                 data-checkin="2:00 PM"
+                 data-checkout="12:00 PM"
+                 data-map="https://maps.google.com"
+                 data-description="Luxury hotel in the beautiful Swat Valley, surrounded by pine forests and mountains. Perfect blend of modern comfort and traditional architecture."
+                 data-facilities="River View,Swimming Pool,Spa,Multiple Restaurants,Conference Hall,Cultural Events"
+                 data-rooms='[
+                   {"name": "Superior Room", "price": 220, "beds": "1 King Bed", "size": "38 m²", "view": "Garden View", "amenities": "Free WiFi, Air Conditioning, TV, Minibar, Work Desk"},
+                   {"name": "Executive Suite", "price": 380, "beds": "1 King Bed + Living Area", "size": "60 m²", "view": "River View", "amenities": "Free WiFi, Air Conditioning, TV, Minibar, Separate Living Area"},
+                   {"name": "Royal Suite", "price": 550, "beds": "1 King Bed + Dining Area", "size": "85 m²", "view": "Panoramic Valley View", "amenities": "Free WiFi, Air Conditioning, Multiple TVs, Dining Area, Private Balcony"}
+                 ]'
+                 data-img="https://image-tc.galaxy.tf/wijpeg-bsyz4cg6rtlcvxpoxvwqi1eln/img-2153.jpg">
+                <img src="https://image-tc.galaxy.tf/wijpeg-bsyz4cg6rtlcvxpoxvwqi1eln/img-2153.jpg" alt="Swat Serena Hotel">
+                <div class="hotel-info">
+                    <h2>Swat Serena Hotel</h2>
+                    <p>⭐⭐⭐⭐⭐ | 9.1 (Excellent)</p>
+                    <p>📍 Swat Valley</p>
+                    <p>💰 From $220/night</p>
+                    <button class="book-btn">View Details</button>
+                </div>
+            </div>
+
+            <!-- 4 Star Hotels (2 Hotels) -->
+            <div class="hotel-card" 
+                 data-name="Fairy Meadows Cottages"
+                 data-star="4"
+                 data-location="Fairy Meadows"
+                 data-price="180"
+                 data-rating="8.8 (Very Good)"
+                 data-checkin="12:00 PM"
+                 data-checkout="10:00 AM"
+                 data-map="https://maps.google.com"
+                 data-description="Unique wooden cottages at the base of Nanga Parbat, the world's 9th highest mountain. Experience nature in its purest form with stunning views."
+                 data-facilities="Mountain View,Wooden Cottages,Campfire,Barbecue,Trekking Guides,Solar Power"
+                 data-rooms='[
+                   {"name": "Standard Cottage", "price": 180, "beds": "1 Double Bed", "size": "28 m²", "view": "Nanga Parbat View", "amenities": "Basic Heating, Solar Lights, Shared Bathroom"},
+                   {"name": "Deluxe Cottage", "price": 250, "beds": "1 King Bed + Single Bed", "size": "35 m²", "view": "Direct Nanga Parbat View", "amenities": "Wood Stove, Private Bathroom, Sitting Area"},
+                   {"name": "Family Cottage", "price": 320, "beds": "2 Double Beds", "size": "45 m²", "view": "Panoramic Mountain View", "amenities": "Wood Stove, Private Bathroom, Living Area, Private Deck"}
+                 ]'
+                 data-img="https://images.unsplash.com/photo-1586375300773-8384e3e4916f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80">
+                <img src="https://images.unsplash.com/photo-1586375300773-8384e3e4916f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Fairy Meadows Cottages">
+                <div class="hotel-info">
+                    <h2>Fairy Meadows Cottages</h2>
+                    <p>⭐⭐⭐⭐ | 8.8 (Very Good)</p>
+                    <p>📍 Fairy Meadows</p>
+                    <p>💰 From $180/night</p>
+                    <button class="book-btn">View Details</button>
+                </div>
+            </div>
+
+            <div class="hotel-card" 
+                 data-name="Naltar Ski Resort"
+                 data-star="4"
+                 data-location="Naltar"
+                 data-price="200"
+                 data-rating="8.5 (Very Good)"
+                 data-checkin="1:00 PM"
+                 data-checkout="11:00 AM"
+                 data-map="https://maps.google.com"
+                 data-description="Premium ski resort in the beautiful Naltar Valley, offering winter sports and summer trekking adventures amidst stunning landscapes."
+                 data-facilities="Ski Slopes,Heated Rooms,Ski Equipment Rental,Restaurant,Sauna,Adventure Tours"
+                 data-rooms='[
+                   {"name": "Standard Room", "price": 200, "beds": "1 Queen Bed", "size": "30 m²", "view": "Valley View", "amenities": "Free WiFi, Heating, TV, Basic Toiletries"},
+                   {"name": "Mountain View Room", "price": 280, "beds": "1 King Bed", "size": "35 m²", "view": "Mountain View", "amenities": "Free WiFi, Heating, TV, Minibar, Balcony"},
+                   {"name": "Family Suite", "price": 350, "beds": "2 Double Beds", "size": "45 m²", "view": "Panoramic Valley View", "amenities": "Free WiFi, Heating, TV, Minibar, Extra Space"}
+                 ]'
+                 data-img="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80">
+                <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Naltar Ski Resort">
+                <div class="hotel-info">
+                    <h2>Naltar Ski Resort</h2>
+                    <p>⭐⭐⭐⭐ | 8.5 (Very Good)</p>
+                    <p>📍 Naltar Valley</p>
+                    <p>💰 From $200/night</p>
+                    <button class="book-btn">View Details</button>
+                </div>
+            </div>
+
+            <!-- 3 Star Hotels (2 Hotels) -->
+            <div class="hotel-card" 
+                 data-name="PTDC Motel"
+                 data-star="3"
+                 data-location="Naran"
+                 data-price="90"
+                 data-rating="7.9 (Good)"
+                 data-checkin="1:00 PM"
+                 data-checkout="11:00 AM"
+                 data-map="https://maps.google.com"
+                 data-description="Comfortable accommodation near Saif-ul-Mulook Lake. Perfect base for exploring Kaghan Valley and its stunning natural beauty."
+                 data-facilities="Lake View,Free Parking,Restaurant,Heating,Guided Treks,Tour Desk"
+                 data-rooms='[
+                   {"name": "Standard Room", "price": 90, "beds": "1 Double Bed", "size": "25 m²", "view": "Valley View", "amenities": "Free WiFi, Heating, TV, Basic Toiletries"},
+                   {"name": "Deluxe Room", "price": 120, "beds": "1 King Bed or 2 Single Beds", "size": "30 m²", "view": "Lake View", "amenities": "Free WiFi, Heating, TV, Balcony"},
+                   {"name": "Family Room", "price": 150, "beds": "2 Double Beds", "size": "40 m²", "view": "Mountain View", "amenities": "Free WiFi, Heating, TV, Extra Space"}
+                 ]'
+                 data-img="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80">
+                <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="PTDC Motel">
+                <div class="hotel-info">
+                    <h2>PTDC Motel</h2>
+                    <p>⭐⭐⭐ | 7.9 (Good)</p>
+                    <p>📍 Naran, Kaghan Valley</p>
+                    <p>💰 From $90/night</p>
+                    <button class="book-btn">View Details</button>
+                </div>
+            </div>
+
+            <div class="hotel-card" 
+                 data-name="Chitral Inn"
+                 data-star="3"
+                 data-location="Chitral"
+                 data-price="85"
+                 data-rating="7.6 (Good)"
+                 data-checkin="1:00 PM"
+                 data-checkout="11:00 AM"
+                 data-map="https://maps.google.com"
+                 data-description="Cozy hotel in Chitral town, gateway to Kalash Valley and Tirich Mir. Experience unique culture and stunning mountain landscapes."
+                 data-facilities="Mountain View,Free WiFi,Restaurant,Cultural Tours,Trekking Arrangements,Local Guides"
+                 data-rooms='[
+                   {"name": "Standard Room", "price": 85, "beds": "1 Double Bed", "size": "22 m²", "view": "Town View", "amenities": "Free WiFi, Heating, TV, Basic Facilities"},
+                   {"name": "Mountain View Room", "price": 110, "beds": "1 King Bed", "size": "28 m²", "view": "Mountain View", "amenities": "Free WiFi, Heating, TV, Balcony"},
+                   {"name": "Family Room", "price": 140, "beds": "2 Double Beds", "size": "35 m²", "view": "Valley View", "amenities": "Free WiFi, Heating, TV, Extra Space"}
+                 ]'
+                 data-img="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80">
+                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Chitral Inn">
+                <div class="hotel-info">
+                    <h2>Chitral Inn</h2>
+                    <p>⭐⭐⭐ | 7.6 (Good)</p>
+                    <p>📍 Chitral</p>
+                    <p>💰 From $85/night</p>
+                    <button class="book-btn">View Details</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Results Message -->
+        <div class="no-results" id="noResults" style="display: none;">
+            <h3>No hotels found</h3>
+            <p>We couldn't find any hotels matching your search criteria.</p>
+            <p>Try searching for a different city or adjusting your filters.</p>
+        </div>
+    </section>
+</div>
+
+<!-- Hotel Details Modal -->
+<div class="modal" id="hotelModal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2 id="modalName"></h2>
+        <img id="modalImg" src="" alt="">
+        <p class="rating" id="modalRating"></p>
+        <p id="modalLocation"></p>
+        <p id="modalPrice"></p>
+        
+        <!-- Date Inputs -->
+        <div class="date-inputs">
+            <div class="date-input">
+                <label for="checkinDate">Check-in Date</label>
+                <input type="date" id="checkinDate">
+            </div>
+            <div class="date-input">
+                <label for="checkoutDate">Check-out Date</label>
+                <input type="date" id="checkoutDate">
+            </div>
+        </div>
+        
+        <div class="modal-section">
+            <h4>Overview</h4>
+            <p id="modalDesc"></p>
+        </div>
+        <div class="modal-section">
+            <h4>Facilities</h4>
+            <div class="amenities" id="modalFacilities"></div>
+        </div>
+        <div class="modal-section rooms">
+            <h4>Room Types</h4>
+            <div id="modalRooms"></div>
+        </div>
+        <div class="modal-section">
+            <h4>Check-in / Check-out Times</h4>
+            <p id="modalCheckin"></p>
+            <p id="modalCheckout"></p>
+        </div>
+        <div class="modal-section">
+            <h4>Location</h4>
+            <a href="#" target="_blank" id="modalMap">View on Map</a>
+        </div>
+        <button class="modal-book-btn" id="openBookingForm">Book Now</button>
+    </div>
+</div>
+
+<!-- Booking Form Modal -->
+<div class="booking-form" id="bookingForm">
+    <div class="booking-form-content">
+        <span class="close-btn" id="closeBookingForm">&times;</span>
+        <h2>Complete Your Booking</h2>
+        
+        <div class="booking-summary">
+            <h4>Booking Summary</h4>
+            <p><strong>Hotel:</strong> <span id="bookingHotelName"></span></p>
+            <p><strong>Room:</strong> <span id="bookingRoomType"></span></p>
+            <p><strong>Check-in:</strong> <span id="bookingCheckin"></span></p>
+            <p><strong>Check-out:</strong> <span id="bookingCheckout"></span></p>
+            <p><strong>Total Price:</strong> $<span id="bookingTotalPrice"></span></p>
+        </div>
+        
+        <form id="guestDetailsForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="guests">Number of Guests</label>
+                <select id="guests" required>
+                    <option value="">Select</option>
+                    <option value="1">1 Guest</option>
+                    <option value="2">2 Guests</option>
+                    <option value="3">3 Guests</option>
+                    <option value="4">4 Guests</option>
+                    <option value="5">5+ Guests</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="specialRequests">Special Requests</label>
+                <textarea id="specialRequests" rows="3" placeholder="Any special requests or requirements..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="paymentMethod">Payment Method</label>
+                <select id="paymentMethod" required>
+                    <option value="">Select Payment Method</option>
+                    <option value="credit">Credit Card</option>
+                    <option value="debit">Debit Card</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="cash">Pay at Hotel</option>
+                </select>
+            </div>
+            
+            <div class="form-buttons">
+                <button type="button" class="cancel-btn" id="cancelBooking">Cancel</button>
+                <button type="submit" class="submit-btn">Confirm Booking</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Success Message -->
+<div class="success-message" id="successMessage">
+    <div class="success-content">
+        <div class="success-icon">✓</div>
+        <h2>Booking Confirmed!</h2>
+        <p>Your reservation at <span id="successHotelName"></span> has been confirmed.</p>
+        <p>A confirmation email has been sent to <span id="successEmail"></span>.</p>
+        <button class="modal-book-btn" id="closeSuccessMessage">Close</button>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById('hotelModal');
+    const closeBtn = document.querySelector('.close-btn');
+    const hotelCards = document.querySelectorAll('.hotel-card');
+    const filterButtons = document.querySelectorAll('.star-filter');
+    const bookingForm = document.getElementById('bookingForm');
+    const successMessage = document.getElementById('successMessage');
+    const searchInput = document.getElementById('searchInput');
+    const noResults = document.getElementById('noResults');
+    
+    // Current booking details
+    let currentBooking = {
+        hotelName: '',
+        roomType: '',
+        checkinDate: '',
+        checkoutDate: '',
+        totalPrice: 0,
+        roomPrice: 0
+    };
+
+    // Filter functionality
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Update active button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            const starRating = button.dataset.star;
+            applyFilters(starRating, searchInput.value.trim());
+        });
+    });
+
+    // Search functionality
+    searchInput.addEventListener('input', () => {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        const activeFilter = document.querySelector('.star-filter.active').dataset.star;
+        applyFilters(activeFilter, searchTerm);
+    });
+
+    // Apply both star rating and city search filters
+    function applyFilters(starRating, searchTerm) {
+        let hasVisibleResults = false;
+        
+        hotelCards.forEach(card => {
+            const cardStarRating = card.dataset.star;
+            const cardLocation = card.dataset.location.toLowerCase();
+            
+            const matchesStar = starRating === 'all' || cardStarRating === starRating;
+            const matchesSearch = searchTerm === '' || cardLocation.includes(searchTerm);
+            
+            if (matchesStar && matchesSearch) {
+                card.style.display = 'flex';
+                hasVisibleResults = true;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        // Show/hide no results message
+        noResults.style.display = hasVisibleResults ? 'none' : 'block';
+    }
+
+    // Modal functionality
+    document.querySelectorAll('.book-btn').forEach(btn=>{
+        btn.addEventListener('click', (e)=>{
+            const card = e.target.closest('.hotel-card');
+            document.getElementById('modalName').textContent = card.dataset.name;
+            document.getElementById('modalImg').src = card.dataset.img;
+            document.getElementById('modalRating').textContent = "⭐".repeat(card.dataset.star) + " | " + card.dataset.rating;
+            document.getElementById('modalLocation').textContent = "📍 " + card.dataset.location;
+            document.getElementById('modalPrice').textContent = "💰 Price: $" + card.dataset.price + " / night";
+            document.getElementById('modalDesc').textContent = card.dataset.description;
+            document.getElementById('modalCheckin').textContent = "Check-in Time: " + card.dataset.checkin;
+            document.getElementById('modalCheckout').textContent = "Check-out Time: " + card.dataset.checkout;
+            document.getElementById('modalMap').href = card.dataset.map;
+
+            // Reset date inputs
+            document.getElementById('checkinDate').value = '';
+            document.getElementById('checkoutDate').value = '';
+
+            // Facilities
+            const facDiv = document.getElementById('modalFacilities');
+            facDiv.innerHTML = '';
+            card.dataset.facilities.split(',').forEach(f=>{
+                const span=document.createElement('span'); span.textContent=f; facDiv.appendChild(span);
+            });
+
+            // Rooms with detailed information
+            const roomsDiv = document.getElementById('modalRooms');
+            roomsDiv.innerHTML = '';
+            const rooms = JSON.parse(card.dataset.rooms);
+            
+            rooms.forEach(room => {
+                const roomDiv = document.createElement('div');
+                roomDiv.className = 'room-details';
+                
+                const roomTitle = document.createElement('h5');
+                roomTitle.textContent = `${room.name} - $${room.price}/night`;
+                roomDiv.appendChild(roomTitle);
+                
+                const roomInfo = document.createElement('div');
+                roomInfo.innerHTML = `
+                    <p><strong>Beds:</strong> ${room.beds}</p>
+                    <p><strong>Size:</strong> ${room.size}</p>
+                    <p><strong>View:</strong> ${room.view}</p>
+                    <p><strong>Amenities:</strong> ${room.amenities}</p>
+                `;
+                roomDiv.appendChild(roomInfo);
+                
+                roomsDiv.appendChild(roomDiv);
+            });
+
+            modal.style.display='flex';
+        });
+    });
+
+    // Open booking form
+    document.getElementById('openBookingForm').addEventListener('click', () => {
+        const checkinDate = document.getElementById('checkinDate').value;
+        const checkoutDate = document.getElementById('checkoutDate').value;
+        
+        if (!checkinDate || !checkoutDate) {
+            alert('Please select check-in and check-out dates');
+            return;
+        }
+        
+        // Calculate number of nights
+        const checkin = new Date(checkinDate);
+        const checkout = new Date(checkoutDate);
+        const nights = Math.ceil((checkout - checkin) / (1000 * 60 * 60 * 24));
+        
+        if (nights <= 0) {
+            alert('Check-out date must be after check-in date');
+            return;
+        }
+        
+        // Get selected room (for simplicity, using the first room)
+        const rooms = JSON.parse(document.querySelector('.hotel-card[data-name="' + document.getElementById('modalName').textContent + '"]').dataset.rooms);
+        const room = rooms[0];
+        
+        // Set booking details
+        currentBooking.hotelName = document.getElementById('modalName').textContent;
+        currentBooking.roomType = room.name;
+        currentBooking.checkinDate = checkinDate;
+        currentBooking.checkoutDate = checkoutDate;
+        currentBooking.roomPrice = room.price;
+        currentBooking.totalPrice = room.price * nights;
+        
+        // Update booking form
+        document.getElementById('bookingHotelName').textContent = currentBooking.hotelName;
+        document.getElementById('bookingRoomType').textContent = currentBooking.roomType;
+        document.getElementById('bookingCheckin').textContent = currentBooking.checkinDate;
+        document.getElementById('bookingCheckout').textContent = currentBooking.checkoutDate;
+        document.getElementById('bookingTotalPrice').textContent = currentBooking.totalPrice;
+        
+        // Show booking form
+        modal.style.display = 'none';
+        bookingForm.style.display = 'flex';
+    });
+
+    // Close booking form
+    document.getElementById('closeBookingForm').addEventListener('click', () => {
+        bookingForm.style.display = 'none';
+        modal.style.display = 'flex';
+    });
+
+    // Cancel booking
+    document.getElementById('cancelBooking').addEventListener('click', () => {
+        bookingForm.style.display = 'none';
+        modal.style.display = 'flex';
+    });
+
+    // Submit booking form
+    document.getElementById('guestDetailsForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // In a real application, you would send this data to a server
+        // For this demo, we'll just show the success message
+        
+        // Update success message
+        document.getElementById('successHotelName').textContent = currentBooking.hotelName;
+        document.getElementById('successEmail').textContent = document.getElementById('email').value;
+        
+        // Show success message
+        bookingForm.style.display = 'none';
+        successMessage.style.display = 'flex';
+        
+        // Reset form
+        document.getElementById('guestDetailsForm').reset();
+    });
+
+    // Close success message
+    document.getElementById('closeSuccessMessage').addEventListener('click', () => {
+        successMessage.style.display = 'none';
+    });
+
+    // Close modals when clicking outside
+    window.addEventListener('click', e => { 
+        if(e.target === modal) modal.style.display = 'none';
+        if(e.target === bookingForm) bookingForm.style.display = 'none';
+        if(e.target === successMessage) successMessage.style.display = 'none';
+    });
+</script>
+
+</body>
+</html>

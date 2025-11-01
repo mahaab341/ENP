@@ -93,6 +93,9 @@ def page_404(request):
 def dashboard(request):
     return render(request, 'admin_dashboard.html')
 
+def hotels(request):
+    return render(request, 'hotels.html')
+
 def login(request):
     return render(request, 'login.html')
 

@@ -12,6 +12,8 @@ urlpatterns = [
     path('map/', views.map, name='map'),
     path('planner/', views.planner, name='planner'),
     path('weather/', views.weather, name='weather'),
+    #hotels
+    path('hotels/', views.hotels, name='hotels'),
     
     # Additional pages
     path('feedback/', views.feedback, name='feedback'),
